@@ -7,6 +7,7 @@ api = Api(app)
 
 @app.route('/')
 def index():
+    print("zoulou chibre d'or")
     return render_template('index.html')
 
 
