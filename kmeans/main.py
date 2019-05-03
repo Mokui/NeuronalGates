@@ -154,7 +154,6 @@ def main():
     target = digits['target']
     target_names = digits['target_names']
 
-    """
     for i in range(5):
         x_train, x_test, y_train, y_test = train_test_split(
             data, target, test_size=0.2)
@@ -167,14 +166,10 @@ def main():
         plt.xlabel('true label')
         plt.ylabel('predicted label')
         plt.show()
-    """
 
-    x_train, x_test, y_train, y_test = train_test_split(
-        data, target, test_size=0.2)
-
-    display_digits(x_train, y_train, x_test, y_test)
-    display_kmeans(x_train, y_train, x_test, y_test)
-    heatmap_data(x_train, y_train, x_test, y_test, target_names)
+    #display_digits(x_train, y_train, x_test, y_test)
+    #display_kmeans(x_train, y_train, x_test, y_test)
+    #heatmap_data(x_train, y_train, x_test, y_test, target_names)
 
 if __name__ == "__main__":
     main()
