@@ -1,15 +1,16 @@
 # coding: utf-8
+from typing import List
 
 
-def mean(tab):
+def mean(tab: List[int]) -> int:
+    # mean function, secured by strong input and output type
     try:
-        val = 0
-        tot = 0
+        value = 0
+        total = 0
         for k in tab:
-            val+=k
-            tot+=1
-        return val/tot
+            value += k
+            total += 1
+        return value / total
     except ZeroDivisionError:
-        print("You can't divide by 0.")
-    except Exception as e:
-        print(f"You fail the mean, error: {str(e)}.")
+        # try catch to manage empty list in input
+        return 0
