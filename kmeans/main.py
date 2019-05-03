@@ -124,7 +124,6 @@ def heatmap_data(x_train, y_train, x_test, y_test, target_names):
     t2_stop = time.process_time()
     print("Elapsed time: %.1f [sec]" % ((t1_stop-t1_start)))
     print("CPU process time: %.1f [sec]" % ((t2_stop-t2_start)))
-    plt.show()
 
 def show_accuracy(x_train, y_train, x_test, y_test):
     # We use SVC classifier because the linear model seems more relevant than kmeans
@@ -155,12 +154,27 @@ def main():
     target = digits['target']
     target_names = digits['target_names']
 
+    """
+    for i in range(5):
+        x_train, x_test, y_train, y_test = train_test_split(
+            data, target, test_size=0.2)
+        y_test_pred = show_accuracy(x_train, y_train, x_test,y_test)
+
+        mat = confusion_matrix(y_test, y_test_pred)
+        sns.heatmap(mat.T, square=True, annot=True, fmt='d', cbar=False,
+                    xticklabels=target_names,
+                    yticklabels=target_names)
+        plt.xlabel('true label')
+        plt.ylabel('predicted label')
+        plt.show()
+    """
+
     x_train, x_test, y_train, y_test = train_test_split(
         data, target, test_size=0.2)
 
-    #display_digits(x_train, y_train, x_test, y_test)
-    #display_kmeans(x_train, y_train, x_test, y_test)
-    #heatmap_data(x_train, y_train, x_test, y_test, target_names)
+    display_digits(x_train, y_train, x_test, y_test)
+    display_kmeans(x_train, y_train, x_test, y_test)
+    heatmap_data(x_train, y_train, x_test, y_test, target_names)
 
 if __name__ == "__main__":
     main()
