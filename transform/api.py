@@ -5,6 +5,7 @@ from neural_network.neural import Identify_Number
 from flask_socketio import SocketIO
 from neural_network.image_processing import splitter, Image_Manager
 from random import shuffle
+from numpy import argmax
 import os
 
 # call the lib to start the rest api and the websocket
@@ -49,9 +50,9 @@ class Image(Resource):
             abort(400)
         image = request.json.get("image")
         res = neural.predict(image)
-        websocket_visu(image)
-
-        return {"res": res}
+        for k in range(0,len(res[0])):
+            print(k," : ",res[0][k])
+        return {"res": str(argmax(res))}
 
 # our endpoint api
 api.add_resource(Image, "/image/")

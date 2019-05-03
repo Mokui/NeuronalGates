@@ -13,6 +13,7 @@ class Identify_Number:
     def exec(self):
         # the real objects who made all of the work
         self.clf = MLPRegressor(hidden_layer_sizes=(666, 666, 666), max_iter=2000)
+        self.clf.fit(self.features, self.label)
 
     def predict(self, data):
         # the method who predict you image 
