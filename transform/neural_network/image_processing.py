@@ -3,16 +3,16 @@ from .fonction import mean
 from PIL import Image
 
 
-class image_manager:
+class Image_Manager:
     """
     Class dedicated to the image processing
     """
 
     def __init__(self, img):
         self.img = img
+        self.tab = []
 
     def divide(self):
-        tab = []
         dis = [4,5,10,20]
         for k in dis:
             pas = int(100/k)
@@ -22,8 +22,10 @@ class image_manager:
                     for k in range(i,i+pas):
                         for l in range(j,j+pas):
                             new.append(mean(self.img.getpixel((k, l))))
-                    tab.append(mean(new))
-        return tab
+                    self.tab.append(mean(new))
+    
+    def get_tab(self):
+        return self.tab
 
 
 class splitter:
@@ -33,17 +35,21 @@ class splitter:
     
     def __init__(self, fichier):
         self.fichier = fichier
+        self.tab = []
     
     def label_feature_associate(self):
         try:
-            img = Image.open("char/"+self.fichier)
-            tab = []
+            img = Image.open("dataset/"+self.fichier)
             num = [0 for i in range(0,10)]
-            num[int(self.fichier.split("_")[0])] = 10000
-            tab.append(num)
-            instance = image_manager(img)
-            tab = tab + instance.divide()
-            print(tab)
-            return tab
+            ele = int(self.fichier.split("_")[0])
+            num[ele] = 10000
+            self.tab.append(num)
+            instance = Image_Manager(img)
+            instance.divide()
+            self.tab = self.tab + instance.get_tab()
         except Exception as e:
-            print(e)
+            print("zoulou error:" + str(e))
+
+    def get_tab(self):
+        return self.tab
+
